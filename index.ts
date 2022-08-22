@@ -23,6 +23,7 @@ export enum DataMode {
 export var featureLayer,
   featureLayer2,
   featureLayerc,
+  Dictionary = new Map(),
   map: google.maps.Map,
   currentMode: DataMode = DataMode.ETHNICITY;
 
