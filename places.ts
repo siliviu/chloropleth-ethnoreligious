@@ -11,6 +11,8 @@ export interface ExportData {
   ethnicGroups: Array<[number, number]>;
 }
 
+import { Dictionary } from './index';
+
 export var database: Map<string, UseData> = new Map();
 
 export function readTextFile(file, callback) {
@@ -26,10 +28,10 @@ export function readTextFile(file, callback) {
 }
 
 export function initData() {
-  /*readTextFile('dataid.json', function (text) {
+  readTextFile('dataid.json', function (text) {
     var data = JSON.parse(text);
-    for (let [a, b] of Object.entries(data)) database.set(a, b);
-  });*/
+    for (let [a, b] of Object.entries(data)) Dictionary.set(a, b);
+  });
   readTextFile('databasero.json', function (text) {
     var data: Array<ExportData> = JSON.parse(text);
     for (let x of data) {

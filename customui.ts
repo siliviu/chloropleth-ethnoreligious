@@ -10,7 +10,7 @@ export var infoWindow: google.maps.InfoWindow,
   okupdate = 1;
 
 export function adddata(a) {
-  data += a + ',\n';
+  data += a + '\n';
   //data += '"' + a + '":' + b + ',\n';
   console.log(a);
 }

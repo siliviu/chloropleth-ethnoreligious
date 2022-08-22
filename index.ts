@@ -6,6 +6,7 @@ import {
   legendControl,
   UpdateLegend,
   InfoWindow,
+  adddata
 } from './customui';
 
 import { UseData, database, initData } from './places';
@@ -79,6 +80,8 @@ export function handleLayerStyle(placeFeature, placeId?) {
   else if (name == 'Croatia') ethnicity = Nationalities[12];
   else if (name == 'Poland') ethnicity = Nationalities[17];
   */
+  if(Dictionary.has(id))
+    adddata(id);
   if (typeof temp == 'undefined') {
   } else {
     ethnicity = temp.ethnicGroups[0][0];
