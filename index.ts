@@ -35,6 +35,8 @@ async function initMap() {
     center: { lat: 46.09431401990664, lng: 24.80469314752579 },
     zoom: 8,
     mapId: '1bf5295b744a394a',
+    mapTypeControl: false,
+    streetViewControl: false,
   });
 
   //@ts-ignore

@@ -1,6 +1,7 @@
 import { Nationality, Nationalities } from './nationality';
 import { currentMode, IdList } from './index';
 import { UseData, database } from './places';
+import { dropDownControl, checkBox, dropDownOptionsDiv } from './options';
 
 export var infoWindow: google.maps.InfoWindow,
   data: string = '',
@@ -149,6 +150,28 @@ export function initUIpost(themap) {
   CenterControl(centerControlDiv, themap);
   legendControl = document.createElement('div');
   LegendControl(legendControl, themap);
+  var checkOptions = {
+    title: 'This allows for multiple selection/toggling on/off',
+    id: 'terrainCheck',
+    label: 'On/Off',
+    action: function () {
+      alert('you clicked check 1');
+    },
+  };
+  var check1 = checkBox(checkOptions);
+  var ddDivOptions = {
+    items: [check1],
+    id: 'myddOptsDiv',
+  };
+  var dropDownDiv = dropDownOptionsDiv(ddDivOptions);
+  var dropDownOptions = {
+    name: 'My Box',
+    id: 'ddControl',
+    title: 'A custom drop down select with mixed elements',
+    dropDown: dropDownDiv,
+  };
+  var test = dropDownControl(dropDownOptions);
+  themap.controls[google.maps.ControlPosition.TOP_LEFT].push(test);
   themap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendControl);
   themap.controls[google.maps.ControlPosition.TOP_CENTER].push(
     centerControlDiv
