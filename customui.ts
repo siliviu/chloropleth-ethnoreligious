@@ -152,7 +152,6 @@ export function initUIpost(themap) {
   LegendControl(legendControl, themap);
   var checkOptions = {
     title: 'This allows for multiple selection/toggling on/off',
-    id: 'terrainCheck',
     label: 'On/Off',
     action: function () {
       alert('you clicked check 1');

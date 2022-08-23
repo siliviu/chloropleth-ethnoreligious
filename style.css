@@ -24,6 +24,9 @@ body {
 /* stolen |
           v */
 .container {
+  border: '2px solid #fff';
+  border-radius: '3px';
+  box-shadow: '0 2px 2px rgba(0,0,0,.2)';
   width: 85px;
   z-index: 1;
   margin: 5px;
@@ -45,6 +48,7 @@ body {
   padding-top: 1px;
   padding-right: 6px;
   padding-bottom: 1px;
+  /*
   border-top-width: 1px;
   border-right-width: 1px;
   border-bottom-width: 1px;
@@ -58,8 +62,13 @@ body {
   border-bottom-color: rgb(113, 123, 135);
   border-left-color: rgb(113, 123, 135);
   border-image: initial;
+  */
+  border: '2px solid #fff';
+  border-radius: '3px';
+  box-shadow: '0 2px 2px rgba(0,0,0,.2)';
   -webkit-box-shadow: rgba(0, 0, 0, 0.398438) 0px 2px 4px;
-  box-shadow: rgba(0, 0, 0, 0.398438) 0px 2px 4px;
+  /*box-shadow: rgba(0, 0, 0, 0.398438) 0px 2px 4px;
+  */
   color: rgb(0, 0, 0);
   padding-left: 6px;
   font-weight: bold;
