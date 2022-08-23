@@ -1,5 +1,5 @@
 import { Nationality, Nationalities } from './nationality';
-import { currentMode } from './index';
+import { currentMode, IdList } from './index';
 import { UseData, database } from './places';
 
 export var infoWindow: google.maps.InfoWindow,
@@ -17,7 +17,8 @@ export function adddata(a) {
 
 export function download() {
   let a = document.createElement('a');
-  //data = '';
+  data = '';
+  for (let x of IdList) data += x + '\n';
   //for (let [a, b] of convert) adddata(a, b);
   a.href = 'data:application/octet-stream,' + encodeURIComponent(data);
   a.download = 'file.txt';

@@ -6,7 +6,7 @@ import {
   legendControl,
   UpdateLegend,
   InfoWindow,
-  adddata
+  adddata,
 } from './customui';
 
 import { UseData, database, initData } from './places';
@@ -24,6 +24,7 @@ export enum DataMode {
 export var featureLayer,
   featureLayer2,
   featureLayerc,
+  IdList = new Set(),
   Dictionary = new Map(),
   map: google.maps.Map,
   currentMode: DataMode = DataMode.ETHNICITY;
@@ -75,13 +76,19 @@ export function handleLayerStyle(placeFeature, placeId?) {
   else if (name == 'Hungary') ethnicity = Nationalities[2];
   else if (name == 'Bulgaria') ethnicity = Nationalities[11];
   else if (name == 'Serbia') ethnicity = Nationalities[9];
-  else if (name == 'Turkey') ethnicity = Nationalities[6];
+  else if (name == 'Turkey') ethnicity = Nationalities[6]; 
   else if (name == 'Moldova') ethnicity = Nationalities[1];
   else if (name == 'Croatia') ethnicity = Nationalities[12];
   else if (name == 'Poland') ethnicity = Nationalities[17];
   */
-  if(Dictionary.has(id))
-    adddata(id);
+  if (Dictionary.has(id)) {
+    IdList.add(id);
+    console.log(name);
+    return {
+      fillColor: 'black',
+      fillOpacity: 1,
+    };
+  }
   if (typeof temp == 'undefined') {
   } else {
     ethnicity = temp.ethnicGroups[0][0];
