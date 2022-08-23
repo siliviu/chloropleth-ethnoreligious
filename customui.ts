@@ -1,7 +1,18 @@
 import { Nationality, Nationalities } from './nationality';
-import { currentMode, IdList } from './index';
+import {
+  currentDataMode,
+  currentViewMode,
+  changeView,
+  IdList,
+  featureLayer,
+} from './index';
 import { UseData, database } from './places';
-import { dropDownControl, checkBox, dropDownOptionsDiv } from './options';
+import {
+  dropDownControl,
+  checkBox,
+  dropDownOptionsDiv,
+  optionDiv,
+} from './options';
 
 export var infoWindow: google.maps.InfoWindow,
   data: string = '',
@@ -17,13 +28,15 @@ export function adddata(a) {
 }
 
 export function download() {
-  let a = document.createElement('a');
+  alert(currentViewMode);
+  /*
   data = '';
   for (let x of IdList) data += x + '\n';
   //for (let [a, b] of convert) adddata(a, b);
+  let a = document.createElement('a');
   a.href = 'data:application/octet-stream,' + encodeURIComponent(data);
   a.download = 'file.txt';
-  a.click();
+  a.click();*/
 }
 
 function CenterControl(controlDiv: HTMLDivElement, map: google.maps.Map) {
@@ -68,7 +81,7 @@ function LegendControl(legendDiv: HTMLDivElement, map: google.maps.Map) {
   legendDiv.style.borderRadius = '3px';
   legendDiv.style.boxShadow = '0 2px 2px rgba(0,0,0,.2)';
   const controlTitle = document.createElement('h2');
-  controlTitle.innerText = currentMode + ' Group';
+  controlTitle.innerText = currentDataMode + ' Group';
   controlTitle.style.marginTop = '0';
   controlTitle.setAttribute('id', 'title');
   legendDiv.appendChild(controlTitle);
@@ -119,7 +132,7 @@ export function InfoWindow(map, feature, event) {
     <br/> Population: ${place.population}
     <div style="margin-top:5px">
     <span style="font-size:15px; font-weight:bold; "> ${
-      currentMode + ' Composition'
+      currentDataMode + ' Composition'
     }:</span>`;
   for (let [a, b] of place.ethnicGroups) {
     content += `  
@@ -150,14 +163,14 @@ export function initUIpost(themap) {
   CenterControl(centerControlDiv, themap);
   legendControl = document.createElement('div');
   LegendControl(legendControl, themap);
-  const checkOptions = {
-    label: 'Majority / Second largest',
-    action: function () {
+  const option = optionDiv({
+    name: 'Toggle: Majority / Second largest',
+    action: () => {
+      google.maps.event.trigger(themap, 'changeView');
     },
-  };
-  const check1 = checkBox(checkOptions);
+  });
   const dropDownDiv = dropDownOptionsDiv({
-    items: [check1],
+    items: [option],
     id: 'myddOptsDiv',
   });
   const test = dropDownControl({

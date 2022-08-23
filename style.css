@@ -24,7 +24,7 @@ body {
 /* http://vislab-ccom.unh.edu/~briana/examples/gdropdown/gdropdown.js */
 .container {
   border: '2px solid #fff';
-  width: 85px;
+  width: 100px;
   z-index: 1;
   margin: 5px;
   cursor: pointer;

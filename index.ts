@@ -32,8 +32,8 @@ export var featureLayer,
   IdList = new Set(),
   Dictionary = new Map(),
   map: google.maps.Map,
-  currentDataMode: DataMode = DataMode.ETHNICITY,
-  currentViewMode: ViewMode = ViewMode.MAJ;
+  currentViewMode: ViewMode = ViewMode.MAJ,
+  currentDataMode: DataMode = DataMode.ETHNICITY;
 
 //@ts-ignore
 async function initMap() {
@@ -60,11 +60,14 @@ async function initMap() {
   featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
   featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
   featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
-  featureLayer.addListener('removefeature', function (feature) {
-    alert('ha');
-  });
 
-  map.addListener('bounds_changed', () => {});
+  map.addListener('changeView', () => {
+    currentViewMode ^= 1;
+    legendList.clear();
+    featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
+    featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
+    featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
+  });
 
   map.addListener('tilesloaded', () => {
     console.log('triggered');
@@ -89,18 +92,10 @@ export function handleLayerStyle(placeFeature, placeId?) {
   else if (name == 'Croatia') ethnicity = Nationalities[12];
   else if (name == 'Poland') ethnicity = Nationalities[17];
   */
-  if (Dictionary.has(id)) {
-    if (name == 'ChIJSd0LbsH0PkcRWCztriYLb8U') alert(name);
-    IdList.add(id);
-    console.log(name);
-    return {
-      fillColor: 'black',
-      fillOpacity: 1,
-    };
-  }
   if (typeof temp == 'undefined') {
   } else {
-    ethnicity = temp.ethnicGroups[0][0];
+    console.log(currentViewMode);
+    ethnicity = temp.ethnicGroups[currentViewMode][0];
     legendList.add(ethnicity);
     style = {
       fillColor: Nationalities[ethnicity].colour,
@@ -131,6 +126,13 @@ export function handleClick(event) {
   InfoWindow(map, feature, event);
 }
 
+function changeView() {
+  currentViewMode = currentViewMode ^ 1;
+  /*featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
+  featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
+  featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);*/
+}
+
 initData();
 
 declare global {
@@ -139,4 +141,5 @@ declare global {
   }
 }
 window.initMap = initMap;
-export {};
+
+export { changeView };
