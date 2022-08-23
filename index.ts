@@ -126,13 +126,6 @@ export function handleClick(event) {
   InfoWindow(map, feature, event);
 }
 
-function changeView() {
-  currentViewMode = currentViewMode ^ 1;
-  /*featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
-  featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
-  featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);*/
-}
-
 initData();
 
 declare global {
