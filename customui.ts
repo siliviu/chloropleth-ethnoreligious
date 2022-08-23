@@ -165,7 +165,7 @@ export function initUIpost(themap) {
   };
   var dropDownDiv = dropDownOptionsDiv(ddDivOptions);
   var dropDownOptions = {
-    name: 'My Box',
+    name: 'Options',
     id: 'ddControl',
     title: 'A custom drop down select with mixed elements',
     dropDown: dropDownDiv,
