@@ -150,26 +150,21 @@ export function initUIpost(themap) {
   CenterControl(centerControlDiv, themap);
   legendControl = document.createElement('div');
   LegendControl(legendControl, themap);
-  var checkOptions = {
-    title: 'This allows for multiple selection/toggling on/off',
-    label: 'On/Off',
+  const checkOptions = {
+    label: 'Majority / Second largest',
     action: function () {
-      alert('you clicked check 1');
     },
   };
-  var check1 = checkBox(checkOptions);
-  var ddDivOptions = {
+  const check1 = checkBox(checkOptions);
+  const dropDownDiv = dropDownOptionsDiv({
     items: [check1],
     id: 'myddOptsDiv',
-  };
-  var dropDownDiv = dropDownOptionsDiv(ddDivOptions);
-  var dropDownOptions = {
+  });
+  const test = dropDownControl({
     name: 'Options',
     id: 'ddControl',
-    title: 'A custom drop down select with mixed elements',
     dropDown: dropDownDiv,
-  };
-  var test = dropDownControl(dropDownOptions);
+  });
   themap.controls[google.maps.ControlPosition.TOP_LEFT].push(test);
   themap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendControl);
   themap.controls[google.maps.ControlPosition.TOP_CENTER].push(

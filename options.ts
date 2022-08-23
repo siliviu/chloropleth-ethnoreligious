@@ -1,8 +1,4 @@
 // http://vislab-ccom.unh.edu/~briana/examples/gdropdown/gdropdown.js
-/************
-	 Classes to set up the drop-down control
-	 ************/
-
 export function optionDiv(options) {
   var control = document.createElement('div');
   control.className = 'dropDownItemDiv';
@@ -14,24 +10,23 @@ export function optionDiv(options) {
 }
 
 export function checkBox(options) {
-  //first make the outer container
-  var container = document.createElement('DIV');
+  var container = document.createElement('div');
   container.className = 'checkboxContainer';
   container.title = options.title;
 
-  var span = document.createElement('SPAN');
+  var span = document.createElement('span');
   span.role = 'checkbox';
   span.className = 'checkboxSpan';
 
-  var bDiv = document.createElement('DIV');
+  var bDiv = document.createElement('div');
   bDiv.className = 'blankDiv';
   bDiv.id = options.id;
 
-  var image = document.createElement('IMG');
+  var image = document.createElement('img');
   image.className = 'blankImg';
   image.src = 'http://maps.gstatic.com/mapfiles/mv/imgs8.png';
 
-  var label = document.createElement('LABEL');
+  var label = document.createElement('label');
   label.className = 'checkboxLabel';
   label.innerHTML = options.label;
 
@@ -49,38 +44,30 @@ export function checkBox(options) {
   return container;
 }
 export function separator() {
-  var sep = document.createElement('DIV');
+  var sep = document.createElement('div');
   sep.className = 'separatorDiv';
   return sep;
 }
 
 export function dropDownOptionsDiv(options) {
-  //alert(options.items[1]);
-  var container = document.createElement('DIV');
+  var container = document.createElement('div');
   container.className = 'dropDownOptionsDiv';
   container.id = options.id;
 
-  for (let i = 0; i < options.items.length; i++) {
-    //alert(options.items[i]);
-    container.appendChild(options.items[i]);
-  }
+  for (let x of options.items) container.appendChild(x);
 
-  //for(item in options.items){
-  //container.appendChild(item);
-  //alert(item);
-  //}
   return container;
 }
 
 export function dropDownControl(options) {
-  var container = document.createElement('DIV');
+  var container = document.createElement('div');
   container.className = 'container';
 
-  var control = document.createElement('DIV');
+  var control = document.createElement('div');
   control.className = 'dropDownControl';
   control.innerHTML = options.name;
   control.id = options.name;
-  var arrow = document.createElement('IMG');
+  const arrow = document.createElement('img');
   arrow.src = 'http://maps.gstatic.com/mapfiles/arrow-down.png';
   arrow.className = 'dropDownArrow';
   control.appendChild(arrow);
@@ -96,18 +83,4 @@ export function dropDownControl(options) {
     }, 1500);
   });
   return container;
-}
-
-export function buttonControl(options) {
-  var control = document.createElement('DIV');
-  control.innerHTML = options.name;
-  control.className = 'button';
-  control.index = 1;
-
-  // Add the control to the map
-  options.gmap.controls[options.position].push(control);
-
-  // When the button is clicked pan to sydney
-  google.maps.event.addDomListener(control, 'click', options.action);
-  return control;
 }

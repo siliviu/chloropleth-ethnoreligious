@@ -21,13 +21,19 @@ export enum DataMode {
   RELIGION = 'Religious',
 }
 
+export enum ViewMode {
+  MAJ,
+  SEC,
+}
+
 export var featureLayer,
   featureLayer2,
   featureLayerc,
   IdList = new Set(),
   Dictionary = new Map(),
   map: google.maps.Map,
-  currentMode: DataMode = DataMode.ETHNICITY;
+  currentDataMode: DataMode = DataMode.ETHNICITY,
+  currentViewMode: ViewMode = ViewMode.MAJ;
 
 //@ts-ignore
 async function initMap() {
