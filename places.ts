@@ -1,6 +1,5 @@
 export interface UseData {
   population: number;
-  ethnicMajority: number;
   ethnicGroups: Array<[number, number]>;
 }
 
@@ -38,7 +37,6 @@ export function initData() {
       let a: string = x.placeId,
         b: UseData = {
           population: x.population,
-          ethnicMajority: x.ethnicmajority,
           ethnicGroups: x.ethnicGroups,
         };
       database.set(a, b);
