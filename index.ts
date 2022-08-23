@@ -82,6 +82,7 @@ export function handleLayerStyle(placeFeature, placeId?) {
   else if (name == 'Poland') ethnicity = Nationalities[17];
   */
   if (Dictionary.has(id)) {
+    if (name == 'ChIJSd0LbsH0PkcRWCztriYLb8U') alert(name);
     IdList.add(id);
     console.log(name);
     return {
