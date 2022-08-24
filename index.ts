@@ -1,4 +1,4 @@
-import { Nationality, Nationalities } from './nationality';
+import { Group, Groups } from './nationality';
 import {
   initUIpre,
   initUIpost,
@@ -17,8 +17,8 @@ import { UseData, database, initData } from './places';
  */
 
 export enum DataMode {
-  ETHNICITY = 'Ethnic',
-  RELIGION = 'Religious',
+  Ethnic,
+  Religious,
 }
 
 export enum ViewMode {
@@ -33,7 +33,7 @@ export var featureLayer,
   Dictionary = new Map(),
   map: google.maps.Map,
   currentViewMode: ViewMode = ViewMode.MAJ,
-  currentDataMode: DataMode = DataMode.ETHNICITY;
+  currentDataMode: DataMode = DataMode.Ethnic;
 
 //@ts-ignore
 async function initMap() {
@@ -98,7 +98,7 @@ export function handleLayerStyle(placeFeature, placeId?) {
     ethnicity = temp.ethnicGroups[currentViewMode][0];
     legendList.add(ethnicity);
     style = {
-      fillColor: Nationalities[ethnicity].colour,
+      fillColor: Groups[currentDataMode][ethnicity].colour,
       fillOpacity: 0.75,
     };
     if (placeId && placeId == id) {
@@ -135,4 +135,4 @@ declare global {
 }
 window.initMap = initMap;
 
-export { changeView };
+export {};

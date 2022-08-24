@@ -1,8 +1,8 @@
-import { Nationality, Nationalities } from './nationality';
+import { Group, Groups } from './nationality';
 import {
   currentDataMode,
+  DataMode,
   currentViewMode,
-  changeView,
   IdList,
   featureLayer,
 } from './index';
@@ -81,7 +81,7 @@ function LegendControl(legendDiv: HTMLDivElement, map: google.maps.Map) {
   legendDiv.style.borderRadius = '3px';
   legendDiv.style.boxShadow = '0 2px 2px rgba(0,0,0,.2)';
   const controlTitle = document.createElement('h2');
-  controlTitle.innerText = currentDataMode + ' Group';
+  controlTitle.innerText = DataMode[currentDataMode] + ' Group';
   controlTitle.style.marginTop = '0';
   controlTitle.setAttribute('id', 'title');
   legendDiv.appendChild(controlTitle);
@@ -104,11 +104,11 @@ export function UpdateLegend(legendDiv: HTMLDivElement, map: google.maps.Map) {
     box.style.height = '15px';
     box.style.border = '1px solid black';
     box.style.marginRight = '5px';
-    box.style.background = Nationalities[a].colour;
+    box.style.background = Groups[currentDataMode][a].colour;
     cur.appendChild(box);
     var text = document.createElement('a');
-    text.textContent = Nationalities[a].name;
-    text.href = Nationalities[a].wikipage;
+    text.textContent = Groups[currentDataMode][a].name;
+    text.href = Groups[currentDataMode][a].wikipage;
     text.target = '_blank';
     text.style.fontSize = '15px';
     text.style.verticalAlign = 'top';
@@ -132,14 +132,14 @@ export function InfoWindow(map, feature, event) {
     <br/> Population: ${place.population}
     <div style="margin-top:5px">
     <span style="font-size:15px; font-weight:bold; "> ${
-      currentDataMode + ' Composition'
+      DataMode[currentDataMode] + ' Composition'
     }:</span>`;
   for (let [a, b] of place.ethnicGroups) {
     content += `  
     <div style="margin-bottom:1px">
-    <div style="display:inline-block; width:12px; height:12px; background:${Nationalities[a].colour};vertical-align:middle; margin-right:5px; border:1px solid black"> </div>`;
+    <div style="display:inline-block; width:12px; height:12px; background:${Groups[currentDataMode][a].colour};vertical-align:middle; margin-right:5px; border:1px solid black"> </div>`;
     content += `<a style="vertical-align:middle; color:black; font-size:12px">${
-      Nationalities[a].name
+      Groups[currentDataMode][a].name
     } : ${b} (${Math.floor((b / place.population) * 10000) / 100}%) </a>`;
     content += '</div>';
   }
