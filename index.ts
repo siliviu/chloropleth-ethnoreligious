@@ -78,7 +78,7 @@ export function handleLayerStyle(placeFeature, placeId?) {
   let name: String = placeFeature.feature.displayName,
     id = placeFeature.feature.placeId,
     temp = database.get(id),
-    ethnicity: number,
+    group: number,
     style: google.maps.FeatureStyleOptions;
   /* 
   if (name == 'Germany') ethnicity = Nationalities[5];
@@ -93,10 +93,10 @@ export function handleLayerStyle(placeFeature, placeId?) {
   if (typeof temp == 'undefined') {
   } else {
     console.log(currentViewMode);
-    ethnicity = temp.ethnicGroups[currentViewMode][0];
-    legendList.add(ethnicity);
+    group = temp.ethnicGroups[currentViewMode][0];
+    legendList.add(group);
     style = {
-      fillColor: Groups[currentDataMode][ethnicity].colour,
+      fillColor: Groups[currentDataMode][group].colour,
       fillOpacity: 0.75,
     };
     if (placeId && placeId == id) {
