@@ -1,7 +1,7 @@
 export interface Group {
   name: string;
   colour: string;
-  wikipage: string;
+  wikipage?: string;
 }
 
 export const Groups: Group[][] = [
@@ -110,104 +110,61 @@ export const Groups: Group[][] = [
   [
     { name: 'Unknown', colour: 'gray' }, // placeholder
     {
-      name: 'Orthodox',
+      name: 'Eastern Orthodox',
       colour: 'N/A',
-      wikipage: 'N/A',
+      wikipage: 'https://en.wikipedia.org/wiki/Eastern_Orthodox_Church',
     } /* 1 */,
     {
-      name: 'Roman Catholic',
+      name: 'Oriental Orthodox',
       colour: 'N/A',
-      wikipage: 'N/A',
+      wikipage: 'https://en.wikipedia.org/wiki/Oriental_Orthodox_Churches',
     } /* 2 */,
     {
-      name: 'Calvinist',
+      name: 'Catholic',
       colour: 'N/A',
-      wikipage: 'N/A',
+      wikipage: 'https://en.wikipedia.org/wiki/Catholic_Church',
     } /* 3 */,
     {
-      name: 'Pentecostal',
+      name: 'Historical Protestant',
       colour: 'N/A',
-      wikipage: 'N/A',
+      wikipage:
+        'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Historical_Protestantism_%E2%80%93_300%E2%80%93500_million',
     } /* 4 */,
     {
-      name: 'Greek Catholic',
+      name: 'Modern Protestant',
       colour: 'N/A',
-      wikipage: 'N/A',
+      wikipage:
+        'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Modern_Protestantism_%E2%80%93_400%E2%80%93500_million',
     } /* 5 */,
     {
-      name: 'Baptist',
+      name: 'Other Cristian',
       colour: 'N/A',
-      wikipage: 'N/A',
+      wikipage:
+        'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Non-trinitarian_Restorationism_%E2%80%93_35_million',
     } /* 6 */,
     {
-      name: 'Seventh-day Adventist',
+      name: 'Sunni Islam',
       colour: 'N/A',
-      wikipage: 'N/A',
+      wikipage:
+        'https://en.wikipedia.org/wiki/Islamic_schools_and_branches#Sunn%C4%AB',
     } /* 7 */,
     {
-      name: 'Muslim',
+      name: 'Shia Islam',
       colour: 'N/A',
-      wikipage: 'N/A',
+      wikipage:
+        'https://en.wikipedia.org/wiki/Islamic_schools_and_branches#Sh%C4%AB%CA%BFa',
     } /* 8 */,
     {
-      name: 'Unitarian',
+      name: 'Judaic',
       colour: 'N/A',
-      wikipage: 'N/A',
+      wikipage: 'https://en.wikipedia.org/wiki/Judaism',
     } /* 9 */,
+    { name: 'Other', colour: '#D3D3D3', wikipage: 'N/A' } /* 10 */,
+    { name: 'No religion', colour: 'N/A', wikipage: 'N/A' } /* 11 */,
     {
-      name: "Jehovah's Witness",
+      name: 'Atheist',
       colour: 'N/A',
-      wikipage: 'N/A',
-    } /* 10 */,
-    {
-      name: 'Orthodox',
-      colour: 'N/A',
-      wikipage: 'N/A',
-    } /* 11 */,
-    {
-      name: 'Roman Catholic',
-      colour: 'N/A',
-      wikipage: 'N/A',
+      wikipage: 'https://en.wikipedia.org/wiki/Atheism',
     } /* 12 */,
-    {
-      name: 'Calvinist',
-      colour: 'N/A',
-      wikipage: 'N/A',
-    } /* 13 */,
-    {
-      name: 'Pentecostal',
-      colour: 'N/A',
-      wikipage: 'N/A',
-    } /* 14 */,
-    {
-      name: 'Greek Catholic',
-      colour: 'N/A',
-      wikipage: 'N/A',
-    } /* 15 */,
-    {
-      name: 'Baptist',
-      colour: 'N/A',
-      wikipage: 'N/A',
-    } /* 16 */,
-    {
-      name: 'Seventh-day Adventist',
-      colour: 'N/A',
-      wikipage: 'N/A',
-    } /* 17 */,
-    {
-      name: 'Muslim',
-      colour: 'N/A',
-      wikipage: 'N/A',
-    } /* 18 */,
-    {
-      name: 'Unitarian',
-      colour: 'N/A',
-      wikipage: 'N/A',
-    } /* 19 */,
-    {
-      name: "Jehovah's Witness",
-      colour: 'N/A',
-      wikipage: 'N/A',
-    } /* 20 */,
   ],
 ];
