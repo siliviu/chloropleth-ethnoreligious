@@ -29,8 +29,6 @@ export enum ViewMode {
 export var featureLayer,
   featureLayer2,
   featureLayerc,
-  IdList = new Set(),
-  Dictionary = new Map(),
   map: google.maps.Map,
   currentViewMode: ViewMode = ViewMode.MAJ,
   currentDataMode: DataMode = DataMode.Ethnic;

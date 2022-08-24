@@ -137,7 +137,7 @@ export const Groups: Group[][] = [
         'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Modern_Protestantism_%E2%80%93_400%E2%80%93500_million',
     } /* 5 */,
     {
-      name: 'Other Cristian',
+      name: 'Other Christian',
       colour: 'N/A',
       wikipage:
         'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Non-trinitarian_Restorationism_%E2%80%93_35_million',
