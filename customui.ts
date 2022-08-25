@@ -1,11 +1,6 @@
 import { Group, Groups } from './nationality';
-import {
-  currentDataMode,
-  DataMode,
-  currentViewMode,
-  featureLayer,
-} from './index';
-import { UseData, database } from './places';
+import { DataMode } from './index';
+import { BestUseData, database } from './places';
 import {
   dropDownControl,
   checkBox,
@@ -21,7 +16,8 @@ export var infoWindow: google.maps.InfoWindow,
   okupdate = 1;
 
 export function adddata(a) {
-  data += a + ',\n';
+  data += a;
+  data += '\n\n';
   //data += '"' + a + '":' + b + ',\n';
   console.log(a);
 }
@@ -33,6 +29,7 @@ export function download() {
   a.href = 'data:application/octet-stream,' + encodeURIComponent(data);
   a.download = 'file.txt';
   a.click();
+  data = '';
 }
 
 function CenterControl(controlDiv: HTMLDivElement, map: google.maps.Map) {
@@ -77,17 +74,20 @@ function LegendControl(legendDiv: HTMLDivElement, map: google.maps.Map) {
   legendDiv.style.borderRadius = '3px';
   legendDiv.style.boxShadow = '0 2px 2px rgba(0,0,0,.2)';
   const controlTitle = document.createElement('h2');
-  controlTitle.innerText = DataMode[currentDataMode] + ' Group';
   controlTitle.style.marginTop = '0';
   controlTitle.setAttribute('id', 'title');
   legendDiv.appendChild(controlTitle);
   legendDiv.setAttribute('id', 'legend');
-  //UpdateLegend(legendDiv, map);
 }
 
-export function UpdateLegend(legendDiv: HTMLDivElement, map: google.maps.Map) {
+export function UpdateLegend(
+  legendDiv: HTMLDivElement,
+  map: google.maps.Map,
+  currentDataMode: DataMode
+) {
   if (!okupdate) return;
   okupdate = 0;
+  legendDiv.childNodes[0].innerText = DataMode[currentDataMode] + ' Group';
   let firstchild = legendDiv.childNodes[0];
   legendDiv.replaceChildren();
   legendDiv.appendChild(firstchild);
@@ -122,15 +122,20 @@ export function initUIpre() {
   infoWindow = new google.maps.InfoWindow({});
 }
 
-export function InfoWindow(map, feature, event) {
-  let place: UseData = database.get(feature.placeId)!;
+export function InfoWindow(
+  map: google.maps.Map,
+  feature,
+  event,
+  currentDataMode: DataMode
+) {
+  let place: BestUseData = database.get(feature.placeId)!;
   let content = `<span style="font-size:small">Name: ${feature.displayName}
     <br/> Population: ${place.population}
     <div style="margin-top:5px">
     <span style="font-size:15px; font-weight:bold; "> ${
       DataMode[currentDataMode] + ' Composition'
     }:</span>`;
-  for (let [a, b] of place.ethnicGroups) {
+  for (let [a, b] of place.groups[currentDataMode]) {
     content += `  
     <div style="margin-bottom:1px">
     <div style="display:inline-block; width:12px; height:12px; background:${Groups[currentDataMode][a].colour};vertical-align:middle; margin-right:5px; border:1px solid black"> </div>`;
@@ -165,8 +170,14 @@ export function initUIpost(themap) {
       google.maps.event.trigger(themap, 'changeView');
     },
   });
+  const option2 = optionDiv({
+    name: 'Switch between Ethnic/Religious',
+    action: () => {
+      google.maps.event.trigger(themap, 'changeData');
+    },
+  });
   const dropDownDiv = dropDownOptionsDiv({
-    items: [option],
+    items: [option, option2],
     id: 'myddOptsDiv',
   });
   const test = dropDownControl({

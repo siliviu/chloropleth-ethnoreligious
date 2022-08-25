@@ -111,7 +111,7 @@ export const Groups: Group[][] = [
     { name: 'Unknown', colour: 'gray' }, // placeholder
     {
       name: 'Eastern Orthodox',
-      colour: 'N/A',
+      colour: 'black',
       wikipage: 'https://en.wikipedia.org/wiki/Eastern_Orthodox_Church',
     } /* 1 */,
     {
@@ -121,30 +121,30 @@ export const Groups: Group[][] = [
     } /* 2 */,
     {
       name: 'Catholic',
-      colour: 'N/A',
+      colour: 'red',
       wikipage: 'https://en.wikipedia.org/wiki/Catholic_Church',
     } /* 3 */,
     {
       name: 'Historical Protestant',
-      colour: 'N/A',
+      colour: 'green',
       wikipage:
         'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Historical_Protestantism_%E2%80%93_300%E2%80%93500_million',
     } /* 4 */,
     {
       name: 'Modern Protestant',
-      colour: 'N/A',
+      colour: 'yellow',
       wikipage:
         'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Modern_Protestantism_%E2%80%93_400%E2%80%93500_million',
     } /* 5 */,
     {
       name: 'Other Christian',
-      colour: 'N/A',
+      colour: 'brown',
       wikipage:
         'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Non-trinitarian_Restorationism_%E2%80%93_35_million',
     } /* 6 */,
     {
       name: 'Sunni Islam',
-      colour: 'N/A',
+      colour: 'pink',
       wikipage:
         'https://en.wikipedia.org/wiki/Islamic_schools_and_branches#Sunn%C4%AB',
     } /* 7 */,
@@ -156,15 +156,12 @@ export const Groups: Group[][] = [
     } /* 8 */,
     {
       name: 'Judaic',
-      colour: 'N/A',
+      colour: 'orange',
       wikipage: 'https://en.wikipedia.org/wiki/Judaism',
     } /* 9 */,
     { name: 'Other', colour: '#D3D3D3', wikipage: 'N/A' } /* 10 */,
-    { name: 'No religion', colour: 'N/A', wikipage: 'N/A' } /* 11 */,
-    {
-      name: 'Atheist',
-      colour: 'N/A',
-      wikipage: 'https://en.wikipedia.org/wiki/Atheism',
-    } /* 12 */,
+    { name: 'Not religious', colour: 'gray', wikipage: 'N/A' } /* 11 */,
+    { name: 'Buddhist', colour: 'N/A', wikipage: 'N/A' } /* 12 */,
+    { name: 'Hinduism', colour: 'N/A', wikipage: 'N/A' } /* 13 */,
   ],
 ];

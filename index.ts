@@ -9,7 +9,7 @@ import {
   adddata,
 } from './customui';
 
-import { UseData, database, initData } from './places';
+import { BestUseData, database, initData } from './places';
 /**
  * @license
  * Copyright 2022 Google LLC. All Rights Reserved.
@@ -60,7 +60,16 @@ async function initMap() {
   featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
 
   map.addListener('changeView', () => {
+    alert('change view');
     currentViewMode ^= 1;
+    legendList.clear();
+    featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
+    featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
+    featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
+  });
+  map.addListener('changeData', () => {
+    alert('change data');
+    currentDataMode ^= 1;
     legendList.clear();
     featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
     featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
@@ -69,7 +78,7 @@ async function initMap() {
 
   map.addListener('tilesloaded', () => {
     console.log('triggered');
-    UpdateLegend(legendControl, map);
+    UpdateLegend(legendControl, map, currentDataMode);
   });
   initUIpost(map);
 }
@@ -92,10 +101,11 @@ export function handleLayerStyle(placeFeature, placeId?) {
   */
   if (typeof temp == 'undefined') {
   } else {
-    console.log(currentViewMode);
-    group = temp.ethnicGroups[currentViewMode][0];
+    if (temp.groups[currentDataMode].length == 1)
+      group = temp.groups[currentDataMode][0][0];
+    else group = temp.groups[currentDataMode][currentViewMode][0];
     legendList.add(group);
-    style = {
+    style = { 
       fillColor: Groups[currentDataMode][group].colour,
       fillOpacity: 0.75,
     };
@@ -121,7 +131,7 @@ export function handleClick(event) {
     handleLayerStyle(placeFeature, feature.placeId);
   featureLayerc.style = (placeFeature) =>
     handleLayerStyle(placeFeature, feature.placeId);
-  InfoWindow(map, feature, event);
+  InfoWindow(map, feature, event, currentDataMode);
 }
 
 initData();
