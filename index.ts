@@ -60,7 +60,6 @@ async function initMap() {
   featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
 
   map.addListener('changeView', () => {
-    alert('change view');
     currentViewMode ^= 1;
     legendList.clear();
     featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
@@ -68,7 +67,6 @@ async function initMap() {
     featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
   });
   map.addListener('changeData', () => {
-    alert('change data');
     currentDataMode ^= 1;
     legendList.clear();
     featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
@@ -105,7 +103,7 @@ export function handleLayerStyle(placeFeature, placeId?) {
       group = temp.groups[currentDataMode][0][0];
     else group = temp.groups[currentDataMode][currentViewMode][0];
     legendList.add(group);
-    style = { 
+    style = {
       fillColor: Groups[currentDataMode][group].colour,
       fillOpacity: 0.75,
     };
