@@ -1,3 +1,5 @@
+import {adddata} from './customui'
+
 export interface UseData {
   population: number;
   ethnicGroups: Array<[number, number]>;
@@ -24,6 +26,18 @@ export function readTextFile(file, callback) {
   rawFile.send(null);
 }
 
+export interface ReadData {
+  placeId: string;
+  population: number;
+  groups: Array<[number, number]>;
+}
+
+export interface BestData {
+  placeId: string;
+  population: number;
+  groups: Array<Array<[number, number]>>;
+}
+
 export function initData() {
   /*
   readTextFile('dataid.json', function (text) {
@@ -41,16 +55,43 @@ export function initData() {
       database.set(a, b);
     }
   });
+  readTextFile('databasesk.json', function (text) {
+    var data: Array<ReadData> = JSON.parse(text);
+    for (let x of data) {
+      let finalarray: Array<Array<[number, number]>> = new Array();
+      let newarray: Array<[number, number]> = new Array();
+
+      let indices: Array<number> = [],
+        cnt: number = 0,
+        others = x.groups[x.groups.length - 3][1],
+        unknown = x.groups[x.groups.length - 2][1];
+      for (let i = 0; i < x.groups.length - 2; ++i) indices.push(i);
+      indices.sort((a, b) => x.groups[b][1] - x.groups[a][1]);
+
+      for (let i = 0; i < x.groups.length - 2; ++i)
+        if (
+          cnt < 5 &&
+          x.groups[indices[i]][1] / x.population >=
+            0.001 * Math.max(1, 0.6 * cnt)
+        )
+          ++cnt,
+            newarray.push([x.groups[indices[i]][0], x.groups[indices[i]][1]]);
+        else others += x.groups[indices[i]][1];
+      if (others != 0) newarray.push([20, others]);
+      if (unknown != 0) newarray.push([0, unknown]);
+      finalarray.push(newarray);
+      let cur: BestData = {
+        placeId: x.placeId,
+        population: x.population,
+        groups: finalarray,
+      };
+      console.log(JSON.stringify(cur));
+      adddata(JSON.stringify(cur));
+    }
+  });
 }
 
 /*
-export interface ReadData {
-  placeId: string;
-  population: number;
-  majority: number;
-  ethnicGroups: Array<number>;
-} 
-
 readTextFile('testdata.json', function (text) {
   var data = JSON.parse(text);
   for (let [a, b] of Object.entries(data)) {

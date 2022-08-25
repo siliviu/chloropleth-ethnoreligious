@@ -3,7 +3,6 @@ import {
   currentDataMode,
   DataMode,
   currentViewMode,
-  IdList,
   featureLayer,
 } from './index';
 import { UseData, database } from './places';
@@ -22,21 +21,18 @@ export var infoWindow: google.maps.InfoWindow,
   okupdate = 1;
 
 export function adddata(a) {
-  data += a + '\n';
+  data += a + ',\n';
   //data += '"' + a + '":' + b + ',\n';
   console.log(a);
 }
 
 export function download() {
-  alert(currentViewMode);
-  /*
-  data = '';
-  for (let x of IdList) data += x + '\n';
+  // alert(currentViewMode);
   //for (let [a, b] of convert) adddata(a, b);
   let a = document.createElement('a');
   a.href = 'data:application/octet-stream,' + encodeURIComponent(data);
   a.download = 'file.txt';
-  a.click();*/
+  a.click();
 }
 
 function CenterControl(controlDiv: HTMLDivElement, map: google.maps.Map) {
