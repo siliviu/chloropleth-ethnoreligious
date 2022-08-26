@@ -171,13 +171,13 @@ export function initUIpost(themap) {
     },
   });
   const option2 = optionDiv({
-    name: 'Switch between Ethnic/Religious',
+    name: 'Switch between Ethnic / Religious',
     action: () => {
       google.maps.event.trigger(themap, 'changeData');
     },
   });
   const option3 = checkBox({
-    label: 'Opacity based on proportion',
+    label: 'Opacity scale',
     action: () => {
       google.maps.event.trigger(themap, 'changeOpacity');
     },
