@@ -29,6 +29,7 @@ export var featureLayer,
   featureLayer2,
   featureLayerc,
   map: google.maps.Map,
+  currentOpacityMode: number = 0,
   currentViewMode: ViewMode = ViewMode.MAJ,
   currentDataMode: DataMode = DataMode.Ethnic;
 
@@ -72,7 +73,13 @@ async function initMap() {
     featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
     featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
   });
-
+  map.addListener('changeOpacity', () => {
+    currentOpacityMode ^= 1;
+    legendList.clear();
+    featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
+    featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
+    featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
+  });
   map.addListener('tilesloaded', () => {
     UpdateLegend(legendControl, map, currentDataMode);
   });
@@ -88,14 +95,17 @@ export function handleLayerStyle(placeFeature, placeId?) {
     style: google.maps.FeatureStyleOptions;
   if (typeof temp == 'undefined') {
   } else {
-    group =
+    let group =
       temp.groups[currentDataMode][
         Math.min(currentViewMode, temp.groups[currentDataMode].length - 1)
-      ][0];
-    legendList.add(group);
+      ];
+    legendList.add(group[0]);
     style = {
-      fillColor: Groups[currentDataMode][group].colour,
-      fillOpacity: 0.75,
+      fillColor: Groups[currentDataMode][group[0]].colour,
+      fillOpacity:
+        currentOpacityMode && currentViewMode == ViewMode.MAJ
+          ? group[1] / temp.population
+          : 0.75,
     };
     if (placeId && placeId == id) {
       style = {

@@ -1,7 +1,12 @@
 import { Groups } from './nationality';
 import { DataMode } from './index';
 import { BestUseData, database } from './places';
-import { dropDownControl, dropDownOptionsDiv, optionDiv } from './options';
+import {
+  checkBox,
+  dropDownControl,
+  dropDownOptionsDiv,
+  optionDiv,
+} from './options';
 
 export var infoWindow: google.maps.InfoWindow,
   data: string = '',
@@ -171,8 +176,14 @@ export function initUIpost(themap) {
       google.maps.event.trigger(themap, 'changeData');
     },
   });
+  const option3 = checkBox({
+    label: 'Opacity based on proportion',
+    action: () => {
+      google.maps.event.trigger(themap, 'changeOpacity');
+    },
+  });
   const dropDownDiv = dropDownOptionsDiv({
-    items: [option, option2],
+    items: [option3, option, option2],
     id: 'myddOptsDiv',
   });
   const test = dropDownControl({
