@@ -1,4 +1,4 @@
-import { Group, Groups } from './nationality';
+import { Groups } from './nationality';
 import {
   initUIpre,
   initUIpost,
@@ -6,10 +6,9 @@ import {
   legendControl,
   UpdateLegend,
   InfoWindow,
-  adddata,
 } from './customui';
 
-import { BestUseData, database, initData } from './places';
+import { database, initData } from './places';
 /**
  * @license
  * Copyright 2022 Google LLC. All Rights Reserved.
@@ -75,9 +74,9 @@ async function initMap() {
   });
 
   map.addListener('tilesloaded', () => {
-    console.log('triggered');
     UpdateLegend(legendControl, map, currentDataMode);
   });
+
   initUIpost(map);
 }
 
@@ -87,21 +86,9 @@ export function handleLayerStyle(placeFeature, placeId?) {
     temp = database.get(id),
     group: number,
     style: google.maps.FeatureStyleOptions;
-  /* 
-  if (name == 'Germany') ethnicity = Nationalities[5];
-  else if (name == 'Hungary') ethnicity = Nationalities[2];
-  else if (name == 'Bulgaria') ethnicity = Nationalities[11];
-  else if (name == 'Serbia') ethnicity = Nationalities[9];
-  else if (name == 'Turkey') ethnicity = Nationalities[6]; 
-  else if (name == 'Moldova') ethnicity = Nationalities[1];
-  else if (name == 'Croatia') ethnicity = Nationalities[12];
-  else if (name == 'Poland') ethnicity = Nationalities[17];
-  */
   if (typeof temp == 'undefined') {
   } else {
-    if (temp.groups[currentDataMode].length == 1)
-      group = temp.groups[currentDataMode][0][0];
-    else group = temp.groups[currentDataMode][currentViewMode][0];
+    group = temp.groups[Math.min(currentDataMode, 1)][currentViewMode][0];
     legendList.add(group);
     style = {
       fillColor: Groups[currentDataMode][group].colour,
@@ -122,7 +109,6 @@ export function handleLayerStyle(placeFeature, placeId?) {
 export function handleClick(event) {
   let feature = event.features[0];
   if (!feature.placeId) return;
-  console.log(feature.displayName);
   featureLayer.style = (placeFeature) =>
     handleLayerStyle(placeFeature, feature.placeId);
   featureLayer2.style = (placeFeature) =>
