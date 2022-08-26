@@ -182,5 +182,7 @@ export function initUIpost(themap) {
   });
   themap.controls[google.maps.ControlPosition.TOP_LEFT].push(test);
   themap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendControl);
-  themap.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+  themap.controls[google.maps.ControlPosition.TOP_CENTER].push(
+    centerControlDiv
+  );
 }
