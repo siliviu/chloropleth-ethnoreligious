@@ -62,21 +62,8 @@ export function initData() {
     }
   });
   */
-  readTextFile('databasesk.json', function (text) {
-    var data: Array<BestData> = JSON.parse(text);
-    for (let x of data) {
-      let a: string = x.placeId,
-        b: BestUseData = {
-          population: x.population,
-          groups: x.groups,
-        };
-      database.set(a, b);
-    }
-  });
-}
-
-/*
-  readTextFile('databasesk.json', function (text) {
+  /*
+  readTextFile('databaseskold.json', function (text) {
     var data: Array<BestData> = JSON.parse(text);
     var finaldata: Array<BestData> = new Array();
     for (let x of data) {
@@ -116,6 +103,18 @@ export function initData() {
     adddata(JSON.stringify(finaldata));
   });
   */
+  readTextFile('databasesk.json', function (text) {
+    var data: Array<BestData> = JSON.parse(text);
+    for (let x of data) {
+      let a: string = x.placeId,
+        b: BestUseData = {
+          population: x.population,
+          groups: x.groups,
+        };
+      database.set(a, b);
+    }
+  });
+}
 
 /*
 readTextFile('testdata.json', function (text) {
