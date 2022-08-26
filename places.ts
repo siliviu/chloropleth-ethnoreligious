@@ -102,7 +102,7 @@ export function initData() {
     }
   });
   */
-  ProcessData('databaseskold.json');
+  //ProcessData('databaseskold.json');
   readTextFile('databasesk.json', function (text) {
     var data: Array<BestData> = JSON.parse(text);
     for (let x of data) {

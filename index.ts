@@ -88,7 +88,10 @@ export function handleLayerStyle(placeFeature, placeId?) {
     style: google.maps.FeatureStyleOptions;
   if (typeof temp == 'undefined') {
   } else {
-    group = temp.groups[Math.min(currentDataMode, 1)][currentViewMode][0];
+    group =
+      temp.groups[currentDataMode][
+        Math.min(currentViewMode, temp.groups[currentDataMode].length - 1)
+      ][0];
     legendList.add(group);
     style = {
       fillColor: Groups[currentDataMode][group].colour,
