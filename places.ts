@@ -102,7 +102,18 @@ export function initData() {
     }
   });
   */
-  //ProcessData('databaseskold.json');
+  //ProcessData('databaseoldro.json');
+  readTextFile('databasero.json', function (text) {
+    var data: Array<BestData> = JSON.parse(text);
+    for (let x of data) {
+      let a: string = x.placeId,
+        b: BestUseData = {
+          population: x.population,
+          groups: x.groups,
+        };
+      database.set(a, b);
+    }
+  });
   readTextFile('databasesk.json', function (text) {
     var data: Array<BestData> = JSON.parse(text);
     for (let x of data) {

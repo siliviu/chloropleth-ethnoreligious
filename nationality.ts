@@ -116,6 +116,7 @@ export const Groups: Group[][] = [
     { name: 'Iranian', colour: 'N/A' } /* 30 */,
     { name: 'Irish', colour: 'N/A' } /* 31 */,
     { name: 'Canadian', colour: 'N/A' } /* 32 */,
+    { name: 'Macedonian', colour: 'N/A' } /* 33 */,
   ],
   // religions
   [
