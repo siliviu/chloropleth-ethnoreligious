@@ -7,7 +7,7 @@ export interface Group {
 export const Groups: Group[][] = [
   // ethnicities
   [
-    { name: 'Unknown', colour: 'gray' }, // placeholder
+    { name: 'Unknown', colour: 'black' }, // placeholder
     {
       name: 'Romanian',
       colour: '#8d5fd3',
@@ -120,55 +120,55 @@ export const Groups: Group[][] = [
   ],
   // religions
   [
-    { name: 'Unknown', colour: 'gray' }, // placeholder
+    { name: 'Unknown', colour: 'black' }, // placeholder
     {
       name: 'Eastern Orthodox',
-      colour: 'black',
+      colour: '#800080',
       wikipage: 'https://en.wikipedia.org/wiki/Eastern_Orthodox_Church',
     } /* 1 */,
     {
       name: 'Oriental Orthodox',
-      colour: 'N/A',
+      colour: '#8d5fd3',
       wikipage: 'https://en.wikipedia.org/wiki/Oriental_Orthodox_Churches',
     } /* 2 */,
     {
       name: 'Catholic',
-      colour: 'red',
+      colour: '#ff0000',
       wikipage: 'https://en.wikipedia.org/wiki/Catholic_Church',
     } /* 3 */,
     {
       name: 'Historical Protestant',
-      colour: 'green',
+      colour: '#0000ff',
       wikipage:
         'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Historical_Protestantism_%E2%80%93_300%E2%80%93500_million',
     } /* 4 */,
     {
       name: 'Modern Protestant',
-      colour: 'yellow',
+      colour: '#00ffff',
       wikipage:
         'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Modern_Protestantism_%E2%80%93_400%E2%80%93500_million',
     } /* 5 */,
     {
       name: 'Other Christian',
-      colour: 'brown',
+      colour: '#ff00ff',
       wikipage:
         'https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Non-trinitarian_Restorationism_%E2%80%93_35_million',
     } /* 6 */,
     {
       name: 'Sunni Islam',
-      colour: 'pink',
+      colour: '#217821',
       wikipage:
         'https://en.wikipedia.org/wiki/Islamic_schools_and_branches#Sunn%C4%AB',
     } /* 7 */,
     {
       name: 'Shia Islam',
-      colour: 'N/A',
+      colour: '#37c837',
       wikipage:
         'https://en.wikipedia.org/wiki/Islamic_schools_and_branches#Sh%C4%AB%CA%BFa',
     } /* 8 */,
     {
       name: 'Judaic',
-      colour: 'orange',
+      colour: '#ffcc00',
       wikipage: 'https://en.wikipedia.org/wiki/Judaism',
     } /* 9 */,
     { name: 'Other', colour: '#D3D3D3', wikipage: 'N/A' } /* 10 */,

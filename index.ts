@@ -23,7 +23,7 @@ export enum DataMode {
 export enum ViewMode {
   MAJ,
   SEC,
-}
+}       
 
 export var featureLayer,
   featureLayer2,
