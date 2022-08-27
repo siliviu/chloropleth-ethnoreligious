@@ -167,19 +167,19 @@ export function initUIpost(themap) {
   const option = optionDiv({
     name: 'Toggle: Majority / Second largest',
     action: () => {
-      google.maps.event.trigger(themap, 'changeView');
+      google.maps.event.trigger(themap, 'change','View');
     },
   });
   const option2 = optionDiv({
     name: 'Switch between Ethnic / Religious',
     action: () => {
-      google.maps.event.trigger(themap, 'changeData');
+      google.maps.event.trigger(themap, 'change','Data');
     },
   });
   const option3 = checkBox({
     label: 'Opacity scale',
     action: () => {
-      google.maps.event.trigger(themap, 'changeOpacity');
+      google.maps.event.trigger(themap, 'change','Opacity');
     },
   });
   const dropDownDiv = dropDownOptionsDiv({

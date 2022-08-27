@@ -51,6 +51,7 @@ async function initMap() {
   featureLayerc = map.getFeatureLayer(google.maps.FeatureType.COUNTRY);
 
   initUIpre();
+
   featureLayer.addListener('click', handleClick);
   featureLayer2.addListener('click', handleClick);
   featureLayerc.addListener('click', handleClick);
@@ -59,27 +60,18 @@ async function initMap() {
   featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
   featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
 
-  map.addListener('changeView', () => {
-    currentViewMode ^= 1;
-    legendList.clear();
+  map.addListener('change', (type: string) => {
+    if (type == 'Opacity') currentOpacityMode ^= 1;
+    else {
+      legendList.clear();
+      if (type == 'View') currentViewMode ^= 1;
+      else if (type == 'Data') currentDataMode ^= 1;
+    }
     featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
     featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
     featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
   });
-  map.addListener('changeData', () => {
-    currentDataMode ^= 1;
-    legendList.clear();
-    featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
-    featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
-    featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
-  });
-  map.addListener('changeOpacity', () => {
-    currentOpacityMode ^= 1;
-    legendList.clear();
-    featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
-    featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
-    featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
-  });
+
   map.addListener('tilesloaded', () => {
     UpdateLegend(legendControl, map, currentDataMode);
   });
@@ -102,10 +94,13 @@ export function handleLayerStyle(placeFeature, placeId?) {
     legendList.add(group[0]);
     style = {
       fillColor: Groups[currentDataMode][group[0]].colour,
-      fillOpacity:
-        currentOpacityMode && currentViewMode == ViewMode.MAJ
-          ? group[1] / temp.population
-          : 0.75,
+      fillOpacity: currentOpacityMode
+        ? Math.max(
+            0.15,
+            ((1 + +(currentViewMode != ViewMode.MAJ)) * group[1]) /
+              temp.population
+          )
+        : 0.75,
     };
     if (placeId && placeId == id) {
       style = {
