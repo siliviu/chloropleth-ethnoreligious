@@ -105,7 +105,7 @@ export const Groups: Group[][] = [
     } /* 19 */,
     { name: 'Other', colour: '#D3D3D3' } /* 20 */,
     { name: 'Gagauz', colour: '#8a916f' } /* 21*/,
-    { name: 'Moravian', colour: '##ff8400' } /* 22 */,
+    { name: 'Moravian', colour: '#ff8400' } /* 22 */,
     { name: 'Silesian', colour: 'N/A' } /* 23 */,
     { name: 'Albanian', colour: 'N/A' } /* 24 */,
     { name: 'Austrian', colour: 'N/A' } /* 25 */,
