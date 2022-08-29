@@ -1,17 +1,5 @@
 import { adddata } from './customui';
 
-export interface UseData {
-  population: number;
-  ethnicGroups: Array<[number, number]>;
-}
-
-export interface ExportData {
-  placeId: string;
-  population: number;
-  ethnicmajority: number;
-  ethnicGroups: Array<[number, number]>;
-}
-
 export var database: Map<string, BestUseData> = new Map();
 
 export function readTextFile(file, callback) {
