@@ -18,7 +18,7 @@ async function getPlaceId(desc, themap) {
           status: google.maps.places.PlacesServiceStatus
         ) => {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
-            console.log('e bine ' + text + ' : ' + results[0].place_id);
+            //console.log('e bine ' + text + ' : ' + results[0].place_id);
             return 1;
             //resolve();
           } else {
@@ -80,9 +80,9 @@ async function getPlacesId(text, themap) {
       }
       ++ac;
       await getPlaceId(cur, themap);
-      await new Promise((r) => setTimeout(r, 350));
+      await new Promise((r) => setTimeout(r, 400));
       console.log(++x);
-      if (ac == 35) {
+      if (ac == 500) {
         resolve();
         return;
       }
