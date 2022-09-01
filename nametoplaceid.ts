@@ -18,7 +18,7 @@ async function getPlaceId(desc, themap) {
           status: google.maps.places.PlacesServiceStatus
         ) => {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
-            console.log('e bine ' + text);
+            console.log('e bine ' + text + ' : ' + results[0].place_id);
             return 1;
             //resolve();
           } else {
