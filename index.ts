@@ -9,6 +9,8 @@ import {
 } from './customui';
 
 import { database, initData } from './places';
+import {initPlaceId} from './nametoplaceid';
+
 /**
  * @license
  * Copyright 2022 Google LLC. All Rights Reserved.
@@ -77,6 +79,7 @@ async function initMap() {
   });
 
   initUIpost(map);
+  initPlaceId(map);
 }
 
 export function handleLayerStyle(placeFeature, placeId?) {

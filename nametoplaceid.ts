@@ -1,13 +1,15 @@
-async function getPlaceId(desc, eth) {
+import { readTextFile } from './places';
+
+async function getPlaceId(desc, themap) {
   let service: google.maps.places.PlacesService =
-    new google.maps.places.PlacesService(map);
+    new google.maps.places.PlacesService(themap);
 
   return new Promise(async (resolve, reject) => {
     async function go(text) {
       const event = {
-        query: text + ', Romania',
+        query: text,
         fields: ['place_id'],
-        type: ['administrative_area_level_2'],
+        type: ['locality'],
       };
       service.textSearch(
         event,
@@ -16,7 +18,6 @@ async function getPlaceId(desc, eth) {
           status: google.maps.places.PlacesServiceStatus
         ) => {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
-            convert.set(desc, results[0].place_id!);
             console.log('e bine ' + text);
             return 1;
             //resolve();
@@ -30,6 +31,7 @@ async function getPlaceId(desc, eth) {
       );
     }
     go(desc);
+    /*
     await new Promise((r) => setTimeout(r, 300));
     go(
       desc.replace('COMUNA', 'COMMUNE').replace(', JUDETUL', ', ') + ' County'
@@ -60,24 +62,24 @@ async function getPlaceId(desc, eth) {
     );
     await new Promise((r) => setTimeout(r, 300));
     go(desc.replace(', ', ', JUDETUL ').trim());
+    */
     resolve();
   });
 }
 
-async function getPlacesId(text) {
+async function getPlacesId(text, themap) {
   return new Promise(async (resolve, reject) => {
-    var data = JSON.parse(text);
+    let data: Array<string> = JSON.parse(text);
     let x = 0,
-      curit = 2,
+      curit = 1,
       ac = 0;
-    for (let [a, b] of Object.entries(data)) {
+    for (let cur of data) {
       if (x < 0 + 62 * (curit - 1)) {
         ++x;
         continue;
       }
       ++ac;
-      convert.set(a, '-1');
-      await getPlaceId(a, b);
+      await getPlaceId(cur, themap);
       await new Promise((r) => setTimeout(r, 350));
       console.log(++x);
       if (ac == 35) {
@@ -89,10 +91,10 @@ async function getPlacesId(text) {
   });
 }
 
-async function initPlaceId() {
+export async function initPlaceId(themap) {
   return new Promise((resolve, reject) => {
     readTextFile('dataconvert.json', async function (text) {
-      await getPlacesId(text);
+      await getPlacesId(text, themap);
       resolve();
     });
   });
