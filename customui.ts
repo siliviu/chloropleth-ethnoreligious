@@ -17,7 +17,7 @@ export var infoWindow: google.maps.InfoWindow,
 
 export function adddata(a) {
   data += a;
-  data += '\n\n';
+  data += '\n';
   //data += '"' + a + '":' + b + ',\n';
   console.log(a);
 }
@@ -167,19 +167,19 @@ export function initUIpost(themap) {
   const option = optionDiv({
     name: 'Toggle: Majority / Second largest',
     action: () => {
-      google.maps.event.trigger(themap, 'change','View');
+      google.maps.event.trigger(themap, 'change', 'View');
     },
   });
   const option2 = optionDiv({
     name: 'Switch between Ethnic / Religious',
     action: () => {
-      google.maps.event.trigger(themap, 'change','Data');
+      google.maps.event.trigger(themap, 'change', 'Data');
     },
   });
   const option3 = checkBox({
     label: 'Opacity scale',
     action: () => {
-      google.maps.event.trigger(themap, 'change','Opacity');
+      google.maps.event.trigger(themap, 'change', 'Opacity');
     },
   });
   const dropDownDiv = dropDownOptionsDiv({

@@ -1,3 +1,4 @@
+import { adddata } from './customui';
 import { readTextFile } from './places';
 
 async function getPlaceId(desc, themap) {
@@ -19,10 +20,12 @@ async function getPlaceId(desc, themap) {
         ) => {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
             //console.log('e bine ' + text + ' : ' + results[0].place_id);
+            adddata(desc + ' : ' + results[0].place_id);
             return 1;
             //resolve();
           } else {
             console.log('nu-i binie aicea ' + text);
+            adddata(desc + ' : ' + 'NULL');
             return 0;
             //resolve();
             //alert('nu-i binie');
@@ -71,18 +74,18 @@ async function getPlacesId(text, themap) {
   return new Promise(async (resolve, reject) => {
     let data: Array<string> = JSON.parse(text);
     let x = 0,
-      curit = 1,
+      curit = 3,
       ac = 0;
     for (let cur of data) {
-      if (x < 0 + 62 * (curit - 1)) {
+      if (x < 0 + 300 * (curit - 1)) {
         ++x;
         continue;
       }
       ++ac;
       await getPlaceId(cur, themap);
-      await new Promise((r) => setTimeout(r, 400));
+      await new Promise((r) => setTimeout(r, 500 + ac / 5));
       console.log(++x);
-      if (ac == 500) {
+      if (ac == 300) {
         resolve();
         return;
       }
