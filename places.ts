@@ -113,4 +113,15 @@ export function initData() {
       database.set(a, b);
     }
   });
+  readTextFile('datatest.json', function (text) {
+    var data: Array<string> = JSON.parse(text);
+    for (let x of data) {
+      let a: string = x,
+        b: BestUseData = {
+          population: 0,
+          groups: [[[0, 0]]],
+        };
+      database.set(a, b);
+    }
+  });
 }

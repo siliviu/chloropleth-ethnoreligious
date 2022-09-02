@@ -74,10 +74,10 @@ async function getPlacesId(text, themap) {
   return new Promise(async (resolve, reject) => {
     let data: Array<string> = JSON.parse(text);
     let x = 0,
-      curit = 3,
+      curit = 1,
       ac = 0;
     for (let cur of data) {
-      if (x < 0 + 300 * (curit - 1)) {
+      if (x < 0 + 251 * (curit - 1)) {
         ++x;
         continue;
       }
