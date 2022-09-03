@@ -9,7 +9,7 @@ import {
 } from './customui';
 
 import { database, initData } from './places';
-import {initPlaceId} from './nametoplaceid';
+import { initPlaceId } from './nametoplaceid';
 
 /**
  * @license
@@ -22,7 +22,7 @@ export enum DataMode {
   Religious,
 }
 
-export enum ViewMode {
+export enum ViewMode { 
   MAJ,
   SEC,
 }
