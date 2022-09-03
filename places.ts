@@ -113,6 +113,7 @@ export function initData() {
       database.set(a, b);
     }
   });
+  /*
   readTextFile('databasech.json', function (text) {
     var data: Array<BestData> = JSON.parse(text);
     for (let x of data) {
@@ -124,6 +125,7 @@ export function initData() {
       database.set(a, b);
     }
   });
+  */
   /*
   readTextFile('datatest.json', function (text) {
     var data: Array<string> = JSON.parse(text);
@@ -137,5 +139,5 @@ export function initData() {
     }
   });
   */
-  //ProcessData('databaseoldch.json');
+  ProcessData('databaseoldch.json');
 }

@@ -79,7 +79,6 @@ async function initMap() {
   });
 
   initUIpost(map);
-  initPlaceId(map);
 }
 
 export function handleLayerStyle(placeFeature, placeId?) {
