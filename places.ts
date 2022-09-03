@@ -89,4 +89,5 @@ export function initData() {
         database.set(a, b);
       }
     });
+  ProcessData('databaseoldch.json');
 }
