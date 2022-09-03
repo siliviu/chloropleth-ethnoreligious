@@ -2,7 +2,7 @@ import { adddata } from './customui';
 
 export var database: Map<string, BestUseData> = new Map();
 
-export function readTextFile(file, callback) {
+export function readTextFile(file: string, callback) {
   var rawFile = new XMLHttpRequest();
   rawFile.overrideMimeType('application/json');
   rawFile.open('GET', file, true);
@@ -72,70 +72,21 @@ function ProcessData(file: string) {
 }
 
 export function initData() {
-  /*
-  readTextFile('dataid.json', function (text) {
-    var data = JSON.parse(text);
-    for (let [a, b] of Object.entries(data)) Dictionary.set(a, b);
-  });*/
-  /*
-  readTextFile('databasero.json', function (text) {
-    var data: Array<ExportData> = JSON.parse(text);
-    for (let x of data) {
-      let a: string = x.placeId,
-        b: UseData = {
-          population: x.population,
-          ethnicGroups: x.ethnicGroups,
-        };
-      database.set(a, b);
-    }
-  });
-  */
-  //ProcessData('databaseoldro.json');
-  readTextFile('databasero.json', function (text) {
-    var data: Array<BestData> = JSON.parse(text);
-    for (let x of data) {
-      let a: string = x.placeId,
-        b: BestUseData = {
-          population: x.population,
-          groups: x.groups,
-        };
-      database.set(a, b);
-    }
-  });
-  readTextFile('databasesk.json', function (text) {
-    var data: Array<BestData> = JSON.parse(text);
-    for (let x of data) {
-      let a: string = x.placeId,
-        b: BestUseData = {
-          population: x.population,
-          groups: x.groups,
-        };
-      database.set(a, b);
-    }
-  });
-  readTextFile('databasech.json', function (text) {
-    var data: Array<BestData> = JSON.parse(text);
-    for (let x of data) {
-      let a: string = x.placeId,
-        b: BestUseData = {
-          population: x.population,
-          groups: x.groups,
-        };
-      database.set(a, b);
-    }
-  });
-  /*
-  readTextFile('datatest.json', function (text) {
-    var data: Array<string> = JSON.parse(text);
-    for (let x of data) {
-      let a: string = x,
-        b: BestUseData = {
-          population: 0,
-          groups: [[[0, 0]]],
-        };
-      database.set(a, b);
-    }
-  });
-  */
-  //ProcessData('databaseoldch.json');
+  let files: Array<string> = [
+    'databasero.json',
+    'databasesk.json',
+    'databasech.json',
+  ];
+  for (let file of files)
+    readTextFile(file, function (text) {
+      var data: Array<BestData> = JSON.parse(text);
+      for (let x of data) {
+        let a: string = x.placeId,
+          b: BestUseData = {
+            population: x.population,
+            groups: x.groups,
+          };
+        database.set(a, b);
+      }
+    });
 }
