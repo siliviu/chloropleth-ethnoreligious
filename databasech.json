@@ -121747,24 +121747,12 @@
   {
     "placeId": "ChIJlyozEni_DUcRiHgUqoRODUo",
     "population": 68,
-    "groups": [
-      [[0, 68]],
-      [
-        [3, 68],
-        [0, 68]
-      ]
-    ]
+    "groups": [[[0, 68]], [[0, 68]]]
   },
   {
     "placeId": "ChIJ59p2C_MEC0cRoMkUZg-vAAQ",
     "population": 1,
-    "groups": [
-      [[0, 1]],
-      [
-        [3, 1],
-        [0, 1]
-      ]
-    ]
+    "groups": [[[0, 1]], [[0, 1]]]
   },
   {
     "placeId": "ChIJi3lwCZyTC0cRkEAWZg-vAAQ",
@@ -121780,10 +121768,10 @@
         [0, 369317]
       ],
       [
-        [11, 222773],
+        [11, 645956],
         [3, 54863],
         [4, 9456],
-        [10, 645956],
+        [10, 222773],
         [0, 368384]
       ]
     ]
