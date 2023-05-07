@@ -13,7 +13,8 @@ export var infoWindow: google.maps.InfoWindow,
   convert = new Map(),
   legendList: Set<number> = new Set<number>([]),
   legendControl,
-  okupdate = 1;
+  okupdate = 1,
+  srv: google.maps.places.PlacesService;
 
 export function adddata(a) {
   data += a;
@@ -128,8 +129,15 @@ export function InfoWindow(
   event,
   currentDataMode: DataMode
 ) {
+  const request = {
+    placeId: feature.placeId,
+  };
+  let name: string | undefined;
+  srv.getDetails(request, function (place, status) {
+    name = place!.name;
+  });
   let place: BestUseData = database.get(feature.placeId)!;
-  let content = `<span style="font-size:small">Name: ${feature.displayName}
+  let content = `<span style="font-size:small">Name: ${name}
     <br/> Population: ${place.population}
     <div style="margin-top:5px">
     <span style="font-size:15px; font-weight:bold; "> ${
@@ -196,4 +204,5 @@ export function initUIpost(themap) {
   themap.controls[google.maps.ControlPosition.TOP_CENTER].push(
     centerControlDiv
   );
+  srv = new google.maps.places.PlacesService(themap);
 }
