@@ -205,4 +205,3 @@ export function initUIpost(themap) {
   );
   srv = new google.maps.places.PlacesService(themap);
 }
-
