@@ -132,12 +132,10 @@ export function InfoWindow(
   const request = {
     placeId: feature.placeId,
   };
-  let name: string | undefined;
-  srv.getDetails(request, function (place, status) {
-    name = place!.name;
-  });
+  let placename: string | undefined;
+  srv.getDetails(request, function (_place, status) {
   let place: BestUseData = database.get(feature.placeId)!;
-  let content = `<span style="font-size:small">Name: ${name}
+  let content = `<span style="font-size:small">Name: ${_place.name}
     <br/> Population: ${place.population}
     <div style="margin-top:5px">
     <span style="font-size:15px; font-weight:bold; "> ${
@@ -156,6 +154,7 @@ export function InfoWindow(
   </div>
   </span>`;
   updateInfoWindow(map, content, event.latLng);
+  });
 }
 
 export function updateInfoWindow(map, content, center) {
@@ -206,3 +205,4 @@ export function initUIpost(themap) {
   );
   srv = new google.maps.places.PlacesService(themap);
 }
+
