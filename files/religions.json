@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Unknown",
+        "colour": "black",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Eastern Orthodox",
+        "colour": "#800080",
+        "wikipage": "https://en.wikipedia.org/wiki/Eastern_Orthodox_Church"
+    },
+    {
+        "name": "Oriental Orthodox",
+        "colour": "#8d5fd3",
+        "wikipage": "https://en.wikipedia.org/wiki/Oriental_Orthodox_Churches"
+    },
+    {
+        "name": "Catholic",
+        "colour": "#ff0000",
+        "wikipage": "https://en.wikipedia.org/wiki/Catholic_Church"
+    },
+    {
+        "name": "Historical Protestant",
+        "colour": "#0000ff",
+        "wikipage": "https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Historical_Protestantism_%E2%80%93_300%E2%80%93500_million"
+    },
+    {
+        "name": "Modern Protestant",
+        "colour": "#00ffff",
+        "wikipage": "https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Modern_Protestantism_%E2%80%93_400%E2%80%93500_million"
+    },
+    {
+        "name": "Other Christian",
+        "colour": "#ff00ff",
+        "wikipage": "https://en.wikipedia.org/wiki/List_of_Christian_denominations_by_number_of_members#Non-trinitarian_Restorationism_%E2%80%93_35_million"
+    },
+    {
+        "name": "Sunni Islam",
+        "colour": "#217821",
+        "wikipage": "https://en.wikipedia.org/wiki/Islamic_schools_and_branches#Sunn%C4%AB"
+    },
+    {
+        "name": "Shia Islam",
+        "colour": "#37c837",
+        "wikipage": "https://en.wikipedia.org/wiki/Islamic_schools_and_branches#Sh%C4%AB%CA%BFa"
+    },
+    {
+        "name": "Judaic",
+        "colour": "#ffcc00",
+        "wikipage": "https://en.wikipedia.org/wiki/Judaism"
+    },
+    {
+        "name": "Other",
+        "colour": "#D3D3D3",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Not religious",
+        "colour": "gray",
+        "wikipage": "https://en.wikipedia.org/wiki/Irreligion"
+    },
+    {
+        "name": "Buddhist",
+        "colour": "N/A",
+        "wikipage": "https://en.wikipedia.org/wiki/Buddhism"
+    },
+    {
+        "name": "Hinduism",
+        "colour": "N/A",
+        "wikipage": "https://en.wikipedia.org/wiki/Hinduism"
+    }
+]

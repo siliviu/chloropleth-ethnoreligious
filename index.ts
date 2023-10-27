@@ -1,117 +1,106 @@
-import { Groups } from './nationality';
-import {
-  initUIpre,
-  initUIpost,
-  legendList,
-  legendControl,
-  UpdateLegend,
-  InfoWindow,
-} from './customui';
+import { initUIpost, legendList, legendControl, updateLegend, showInfoWindow as showInfoWindow, initUIpre } from "./ui";
 
-import { database, initData } from './places';
-import { initPlaceId } from './nametoplaceid';
+import { database, initData, Groups } from "./repo";
+import { DataMode, ViewMode } from "./domain";
+import { initPlaceId } from "./nametoplaceid";
 
-/**
- * @license
- * Copyright 2022 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
-export enum DataMode {
-  Ethnic,
-  Religious,
-}
-
-export enum ViewMode { 
-  MAJ,
-  SEC,
-}
-
-export var featureLayer,
-  featureLayer2,
-  featureLayerc,
+export var featureLayers: Array<google.maps.FeatureLayer> = new Array(),
   map: google.maps.Map,
   currentOpacityMode: number = 0,
   currentViewMode: ViewMode = ViewMode.MAJ,
-  currentDataMode: DataMode = DataMode.Ethnic;
+  currentDataMode: DataMode = DataMode.Ethnic,
+  currentFocus: number;
 
 //@ts-ignore
 async function initMap() {
-  map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 46.09431401990664, lng: 24.80469314752579 },
     zoom: 8,
-    mapId: '1bf5295b744a394a',
+    mapId: "1bf5295b744a394a",
     mapTypeControl: false,
+    clickableIcons: false,
     streetViewControl: false,
   });
 
   //@ts-ignore
-  featureLayer = map.getFeatureLayer(
-    google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_2
-  );
-  featureLayer2 = map.getFeatureLayer(google.maps.FeatureType.LOCALITY);
-  featureLayerc = map.getFeatureLayer(google.maps.FeatureType.COUNTRY);
-
+  let featureConfig: Array<google.maps.FeatureType> = [
+    google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_2,
+    google.maps.FeatureType.LOCALITY,
+    google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_1,
+  ];
+  for (let config of featureConfig) featureLayers.push(map.getFeatureLayer(config));
   initUIpre();
+  for (let featureLayer of featureLayers) {
+    featureLayer.addListener("click", handleClick);
+    featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
+  }
 
-  featureLayer.addListener('click', handleClick);
-  featureLayer2.addListener('click', handleClick);
-  featureLayerc.addListener('click', handleClick);
-
-  featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
-  featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
-  featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
-
-  map.addListener('change', (type: string) => {
-    if (type == 'Opacity') currentOpacityMode ^= 1;
+  map.addListener("change", (type: string, nr: number) => {
+    if (type == "Opacity") currentOpacityMode ^= 1;
     else {
       legendList.clear();
-      if (type == 'View') currentViewMode ^= 1;
-      else if (type == 'Data') currentDataMode ^= 1;
+      if (type == "View") {
+        if (currentViewMode == ViewMode.FOC) currentViewMode = ViewMode.MAJ;
+        else currentViewMode ^= 1;
+      } else if (type == "Data") {
+        if (currentViewMode == ViewMode.FOC) currentViewMode = ViewMode.MAJ;
+        currentDataMode ^= 1;
+      } else if (type == "Focus") {
+        if (currentViewMode == ViewMode.FOC) currentViewMode = ViewMode.MAJ;
+        else {
+          currentViewMode = ViewMode.FOC;
+          currentFocus = nr;
+        }
+      }
     }
-    featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
-    featureLayer2.style = (placeFeature) => handleLayerStyle(placeFeature);
-    featureLayerc.style = (placeFeature) => handleLayerStyle(placeFeature);
+    for (let featureLayer of featureLayers) featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature);
+    setTimeout(() => {
+      updateLegend(map, legendControl, currentDataMode);
+    }, 100);
   });
 
-  map.addListener('tilesloaded', () => {
-    UpdateLegend(legendControl, map, currentDataMode);
+  map.addListener("tilesloaded", () => {
+    updateLegend(map, legendControl, currentDataMode);
   });
 
   initUIpost(map);
+  // await initPlaceId(map);
 }
 
 export function handleLayerStyle(placeFeature, placeId?) {
-  let name: String = placeFeature.feature.displayName,
-    id = placeFeature.feature.placeId,
-    temp = database.get(id),
-    group: number,
+  let id = placeFeature.feature.placeId,
+    data = database.get(id),
     style: google.maps.FeatureStyleOptions;
-  if (typeof temp == 'undefined') {
-  } else {
-    let group =
-      temp.groups[currentDataMode][
-        Math.min(currentViewMode, temp.groups[currentDataMode].length - 1)
-      ];
-    legendList.add(group[0]);
+  if (typeof data == "undefined") return null;
+  else if (data == null || (currentViewMode != ViewMode.FOC && data.groups[currentDataMode].length <= currentViewMode)) {
     style = {
-      fillColor: Groups[currentDataMode][group[0]].colour,
-      fillOpacity: currentOpacityMode
-        ? Math.max(
-            0.15,
-            ((1 + +(currentViewMode != ViewMode.MAJ)) * group[1]) /
-              temp.population
-          )
-        : 0.75,
+      fillColor: "black",
+      fillOpacity: 1,
     };
-    if (placeId && placeId == id) {
-      style = {
-        ...style,
-        strokeColor: 'black',
-        strokeOpacity: 1.0,
-        strokeWeight: 1.0,
-      };
-    }
+    return style;
+  }
+  var group;
+  if (currentViewMode == ViewMode.FOC) {
+    for (let [id, nr] of data.groups[currentDataMode]) if (id == currentFocus) group = [id, nr];
+    if (group == undefined) return;
+  } else group = data.groups[currentDataMode][currentViewMode];
+  legendList.add(group[0]);
+  style = {
+    fillColor: Groups[currentDataMode][group[0]].colour,
+    fillOpacity:
+      currentViewMode == ViewMode.FOC
+        ? Math.max(0.125, (2.5 * group[1]) / data.population)
+        : currentOpacityMode
+        ? Math.max(0.15, ((currentViewMode == ViewMode.SEC ? 2.25 : 1) * group[1]) / data.population)
+        : 0.75,
+  };
+  if (placeId && placeId == id) {
+    style = {
+      ...style,
+      strokeColor: "black",
+      strokeOpacity: 1.0,
+      strokeWeight: 2.0,
+    };
   }
   return style;
 }
@@ -119,13 +108,8 @@ export function handleLayerStyle(placeFeature, placeId?) {
 export function handleClick(event) {
   let feature = event.features[0];
   if (!feature.placeId) return;
-  featureLayer.style = (placeFeature) =>
-    handleLayerStyle(placeFeature, feature.placeId);
-  featureLayer2.style = (placeFeature) =>
-    handleLayerStyle(placeFeature, feature.placeId);
-  featureLayerc.style = (placeFeature) =>
-    handleLayerStyle(placeFeature, feature.placeId);
-  InfoWindow(map, feature, event, currentDataMode);
+  for (let featureLayer of featureLayers) featureLayer.style = (placeFeature) => handleLayerStyle(placeFeature, feature.placeId);
+  showInfoWindow(map, feature, event, currentDataMode);
 }
 
 initData();

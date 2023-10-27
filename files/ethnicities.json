@@ -1,0 +1,182 @@
+[
+    {
+        "name": "Unknown",
+        "colour": "black",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Romanian",
+        "colour": "#8d5fd3",
+        "wikipage": "https://en.wikipedia.org/wiki/Romanians"
+    },
+    {
+        "name": "Hungarian",
+        "colour": "#2ca02c",
+        "wikipage": "https://en.wikipedia.org/wiki/Hungarians"
+    },
+    {
+        "name": "Rromani",
+        "colour": "#808000",
+        "wikipage": "https://en.wikipedia.org/wiki/Romani_people"
+    },
+    {
+        "name": "Ukrainian",
+        "colour": "#aade87",
+        "wikipage": "https://en.wikipedia.org/wiki/Ukrainians"
+    },
+    {
+        "name": "German",
+        "colour": "#ff0000",
+        "wikipage": "https://en.wikipedia.org/wiki/Germans"
+    },
+    {
+        "name": "Turkish",
+        "colour": "#ff00ff",
+        "wikipage": "https://en.wikipedia.org/wiki/Turkish_people"
+    },
+    {
+        "name": "Russian",
+        "colour": "#008080",
+        "wikipage": "https://en.wikipedia.org/wiki/Russians"
+    },
+    {
+        "name": "Tatar",
+        "colour": "#00ffff",
+        "wikipage": "https://en.wikipedia.org/wiki/Tatars"
+    },
+    {
+        "name": "Serbian",
+        "colour": "#0000ff",
+        "wikipage": "https://en.wikipedia.org/wiki/Serbs"
+    },
+    {
+        "name": "Slovak",
+        "colour": "#ff6600",
+        "wikipage": "https://en.wikipedia.org/wiki/Slovaks"
+    },
+    {
+        "name": "Bulgarian",
+        "colour": "#c87137",
+        "wikipage": "https://en.wikipedia.org/wiki/Bulgarians"
+    },
+    {
+        "name": "Croatian",
+        "colour": "#1a8cff",
+        "wikipage": "https://en.wikipedia.org/wiki/Croats"
+    },
+    {
+        "name": "Greek",
+        "colour": "#70b6ff",
+        "wikipage": "https://en.wikipedia.org/wiki/Greeks"
+    },
+    {
+        "name": "Italian",
+        "colour": "#FFFF00",
+        "wikipage": "https://en.wikipedia.org/wiki/Italians"
+    },
+    {
+        "name": "Jewish",
+        "colour": "#ffcc00",
+        "wikipage": "https://en.wikipedia.org/wiki/Jews"
+    },
+    {
+        "name": "Czech",
+        "colour": "#ffa200",
+        "wikipage": "https://en.wikipedia.org/wiki/Czechs"
+    },
+    {
+        "name": "Polish",
+        "colour": "#800080",
+        "wikipage": "https://en.wikipedia.org/wiki/Poles"
+    },
+    {
+        "name": "Chinese",
+        "colour": "#8B0000",
+        "wikipage": "https://en.wikipedia.org/wiki/Han_Chinese"
+    },
+    {
+        "name": "Armenian",
+        "colour": "#87B66C",
+        "wikipage": "https://en.wikipedia.org/wiki/Armenians"
+    },
+    {
+        "name": "Other",
+        "colour": "#D3D3D3",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Gagauz",
+        "colour": "#8a916f",
+        "wikipage": "https://en.wikipedia.org/wiki/Gagauz_people"
+    },
+    {
+        "name": "Moravian",
+        "colour": "#ff8400",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Silesian",
+        "colour": "#c900c9",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Albanian",
+        "colour": "#602020",
+        "wikipage": "https://en.wikipedia.org/wiki/Albanians"
+    },
+    {
+        "name": "Austrian",
+        "colour": "#c70505",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Vietnamese",
+        "colour": "#004d13",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Korean",
+        "colour": "N/A",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "English",
+        "colour": "#f53d3d",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "French",
+        "colour": "#5170fb",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Iranian",
+        "colour": "N/A",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Irish",
+        "colour": "#38fa69",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Canadian",
+        "colour": "N/A",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Macedonian",
+        "colour": "#993E01",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Aromanian",
+        "colour": "#6018CE",
+        "wikipage": "N/A"
+    },
+    {
+        "name": "Bosniak",
+        "colour": "#3434C9",
+        "wikipage": "N/A"
+    }
+]
