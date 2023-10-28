@@ -146,6 +146,6 @@ export function initUIpost(map) {
   });
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(dropDown);
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendControl);
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centreButton);
+  //map.controls[google.maps.ControlPosition.TOP_CENTER].push(centreButton);
   srv = new google.maps.places.PlacesService(map);
 }
