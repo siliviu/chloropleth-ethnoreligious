@@ -78,6 +78,6 @@ export function initData() {
         }
       });
   });
-  processData("dataconvert.json");
+  // processData("dataconvert.json");
 }
 export { PlaceData };

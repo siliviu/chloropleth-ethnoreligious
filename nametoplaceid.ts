@@ -9,22 +9,22 @@ async function getPlaceId(desc: string): Promise<void> {
       const event = {
         query: text,
         fields: ["place_id"],
-        type: "administrative_area_level_2",
+        type: "locality",
       };
       service.textSearch(event, (results: google.maps.places.PlaceResult[] | null, status: google.maps.places.PlacesServiceStatus) => {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           console.log("e bine " + text + " : " + results![0].place_id);
-          addData(desc + " : " + results![0].place_id);
+          addData(desc + ":" + results![0].place_id);
           database.set(results![0].place_id!, null);
           return 1;
         } else {
           console.log("nu-i binie aicea " + text);
-          addData(desc + " : " + "NULL");
+          addData(desc + ":" + "NULL");
           return 0;
         }
       });
     }
-    go(desc + ", Bulgaria");
+    go(desc + ", Hungary");
     resolve();
   });
 }

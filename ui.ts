@@ -86,14 +86,14 @@ export function showInfoWindow(map: google.maps.Map, feature, event, currentData
   srv.getDetails(request, function (_place, status) {
     let place: PlaceData = database.get(feature.placeId)!;
     let content = `<span style="font-size:small">Name: ${_place!.name}
-    <br/> Population: ${place.population}
+    <br/> Population: ${place.population.toLocaleString()}
     <div style="margin-top:5px">
     <span style="font-size:15px; font-weight:bold; "> ${DataMode[currentDataMode] + " Composition"}:</span>`;
     for (let [a, b] of place.groups[currentDataMode]) {
       content += `  
     <div style="margin-bottom:1px">
     <div style="display:inline-block; width:12px; height:12px; background:${Groups[currentDataMode][a].colour};vertical-align:middle; margin-right:5px; border:1px solid black"> </div>`;
-      content += `<a style="vertical-align:middle; color:black; font-size:12px">${Groups[currentDataMode][a].name} : ${b} (${
+      content += `<a style="vertical-align:middle; color:black; font-size:12px">${Groups[currentDataMode][a].name} : ${b.toLocaleString()} (${
         Math.floor((b / place.population) * 10000) / 100
       }%) </a>`;
       content += "</div>";
@@ -146,6 +146,6 @@ export function initUIpost(map) {
   });
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(dropDown);
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendControl);
-  //map.controls[google.maps.ControlPosition.TOP_CENTER].push(centreButton);
+  // map.controls[google.maps.ControlPosition.TOP_CENTER].push(centreButton);
   srv = new google.maps.places.PlacesService(map);
 }

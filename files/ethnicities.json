@@ -178,5 +178,10 @@
         "name": "Bosniak",
         "colour": "#3434C9",
         "wikipage": "N/A"
+    },
+    {
+        "name": "Slovenian",
+        "colour": "#00ffd5",
+        "wikipage": "N/A"
     }
 ]

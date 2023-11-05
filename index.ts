@@ -64,7 +64,7 @@ async function initMap() {
   });
 
   initUIpost(map);
-  // await initPlaceId(map);
+  //await initPlaceId(map);
 }
 
 export function handleLayerStyle(placeFeature, placeId?) {
